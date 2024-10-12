@@ -40,7 +40,10 @@ public class User implements UserDetails, Principal {
     @Column(unique = true)
     private String email;
     private String password;
+    @Setter
+    @Getter
     private boolean accountLocked;
+    @Setter
     private boolean enabled;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -50,7 +53,7 @@ public class User implements UserDetails, Principal {
     @Column(nullable = false, updatable = false)
     private Instant createdAt;
     @UpdateTimestamp
-    @Column(insertable = false)
+    @Column(nullable = false)
     private Instant modifiedAt;
 
     @Override
@@ -97,9 +100,8 @@ public class User implements UserDetails, Principal {
         return this.enabled;
     }
 
-    private String getFullName() {
+    public String getFullName() {
 
         return this.firstNane + " " + this.lastName;
     }
-
 }
