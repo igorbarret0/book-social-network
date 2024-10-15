@@ -31,5 +31,7 @@ public class Role {
     @JsonIgnore
     private List<User> users;
 
-
+    public Role(String name) {
+        this.name = name;
+    }
 }
