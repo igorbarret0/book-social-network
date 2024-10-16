@@ -1,5 +1,7 @@
 package com.barreto.book_social_newtwork.user;
 
+import com.barreto.book_social_newtwork.book.Book;
+import com.barreto.book_social_newtwork.history.BookTransactionHistory;
 import com.barreto.book_social_newtwork.role.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.query.sql.internal.ParameterRecognizerImpl;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -48,6 +51,12 @@ public class User implements UserDetails, Principal {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> histories;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
