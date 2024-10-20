@@ -33,3 +33,6 @@ application:
     jwt:
       secret-key: m/BH8ubQiFRnSIIqXK/krgHcrJy9ZN6V4DulLTq1IbvlLwBKCgjpSnIlQHre3Ohp
       jwt-expiration: 86400000
+  file:
+    upload:
+      photos-output-path: ./uploads

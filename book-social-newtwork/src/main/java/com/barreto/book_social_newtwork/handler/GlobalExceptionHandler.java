@@ -1,5 +1,6 @@
 package com.barreto.book_social_newtwork.handler;
 
+import com.barreto.book_social_newtwork.exception.OperationNotPermittedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -77,6 +78,21 @@ public class GlobalExceptionHandler {
                 .body(
                         excepResponse
                 );
+    }
+
+    @ExceptionHandler(OperationNotPermittedException.class)
+    public ResponseEntity<ExceptionResponse> operationNotPermittedHandlerException(
+            OperationNotPermittedException exception
+    ) {
+
+        var excepResponse = new ExceptionResponse();
+        excepResponse.setError(exception.getMessage());
+
+       return ResponseEntity
+               .status(HttpStatus.BAD_REQUEST)
+               .body(
+                       excepResponse
+               );
     }
 
     @ExceptionHandler(Exception.class)
