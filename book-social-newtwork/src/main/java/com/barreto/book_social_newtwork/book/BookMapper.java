@@ -1,5 +1,6 @@
 package com.barreto.book_social_newtwork.book;
 
+import com.barreto.book_social_newtwork.file.FileUtils;
 import com.barreto.book_social_newtwork.history.BookTransactionHistory;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,7 @@ public class BookMapper {
                 book.getIsbn(),
                 book.getSynopsis(),
                 book.getOwner().getFullName(),
-                null,
+                FileUtils.readFileFromLocation(book.getBookCover()),
                 book.getRate(),
                 book.isArchived(),
                 book.isShareable()
