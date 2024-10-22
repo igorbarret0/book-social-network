@@ -28,16 +28,13 @@ public class BookService {
     private final FileStorageService fileStorageService;
 
     public Long saveBook(BookRequest request, Authentication connectedUser) {
-
         User user = ((User) connectedUser.getPrincipal());
         Book book = bookMapper.toBook(request);
         book.setOwner(user);
 
         return bookRepository.save(book).getId();
     }
-
     public BookResponse findBookById(Long bookId) {
-
         return bookRepository.findById(bookId)
                 .map(bookMapper::toBookResponse)
                 .orElseThrow( () -> new EntityNotFoundException("Book could not be found with the provided ID: " + bookId));
