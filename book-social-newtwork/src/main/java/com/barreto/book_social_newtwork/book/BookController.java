@@ -1,7 +1,6 @@
 package com.barreto.book_social_newtwork.book;
 
 import com.barreto.book_social_newtwork.common.PageResponse;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("books")
 @RequiredArgsConstructor
-@Tag(name = "book")
+@Tag(name = "Books")
 public class BookController {
 
     private final BookService bookService;
@@ -118,7 +117,6 @@ public class BookController {
     @PostMapping(value = "/cover/{book-id}", consumes = "multipart/form-data")
     public ResponseEntity<?> uploadBookCoverPicture(
             @PathVariable(name = "book-id") Long bookId,
-            @Parameter()
             @RequestPart("file") MultipartFile file,
             Authentication connectedUser
     ) {

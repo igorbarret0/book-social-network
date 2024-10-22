@@ -1,7 +1,6 @@
 package com.barreto.book_social_newtwork.file;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -16,7 +15,7 @@ public class FileUtils {
 
     public static byte[] readFileFromLocation(String fileUrl) {
 
-        if (StringUtils.isBlank(fileUrl)) {
+        if (fileUrl.isBlank()) {
             return null;
         }
 

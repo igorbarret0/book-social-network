@@ -23,12 +23,9 @@ public class BookSocialNewtworkApplication {
 
 	@Bean
 	public CommandLineRunner runner(RoleRepository roleRepository) {
-
 		return args -> {
 			if (roleRepository.findByName("USER").isEmpty()) {
-				roleRepository.save(
-						roleRepository.save(new Role("User"))
-				);
+				roleRepository.save(new Role("USER"));
 			}
 		};
 	}
